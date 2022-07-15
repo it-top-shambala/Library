@@ -1,0 +1,66 @@
+﻿<Window x:Class="Library.App.Windows.Main.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Library"
+        Height="450" Width="800" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowStyle.xaml" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Column="0"
+                 ItemsSource="{Binding Books}"
+                 SelectedItem="{Binding Book}"
+                 Style="{StaticResource StyleDefault}" />
+
+        <StackPanel Grid.Column="1" DataContext="{Binding Book}">
+            <StackPanel Style="{StaticResource StyleStackPanelLeft}">
+                <Label Content="Название"
+                       Style="{StaticResource StyleLabel}" />
+                <TextBox x:Name="InputTitle"
+                         Text="{Binding Title}"
+                         Style="{StaticResource StyleInput}" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource StyleStackPanelLeft}">
+                <Label Content="Автор"
+                       Style="{StaticResource StyleLabel}" />
+                <TextBox x:Name="InputAuthor"
+                         Text="{Binding Author}"
+                         Style="{StaticResource StyleInput}" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource StyleStackPanelLeft}">
+                <Label Content="Жанр"
+                       Style="{StaticResource StyleLabel}" />
+                <TextBox x:Name="InputGenre"
+                         Text="{Binding Genre}"
+                         Style="{StaticResource StyleInput}" />
+            </StackPanel>
+
+            <StackPanel Style="{StaticResource StyleStackPanelCenter}">
+                <Button Content="Очистить"
+                        Click="ButtonClear_OnClick"
+                        Style="{StaticResource StyleButtonClear}" />
+                <Button Content="Удалить"
+                        Click="ButtonDelete_OnClick"
+                        Style="{StaticResource StyleButtonDelete}" />
+                <Button Content="Сохранить"
+                        Click="ButtonSave_OnClick"
+                        Style="{StaticResource StyleButtonSave}" />
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>
