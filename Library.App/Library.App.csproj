@@ -8,14 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\library_ico.png"/>
+    <None Remove="Assets\library_ico.png" />
     <Resource Include="Assets\library_ico.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <None Update="books.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Library.Model\Library.Model.csproj"/>
+    <ProjectReference Include="..\Library.Model\Library.Model.csproj" />
   </ItemGroup>
 
 </Project>

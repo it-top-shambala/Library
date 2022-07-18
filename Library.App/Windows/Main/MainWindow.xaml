@@ -19,17 +19,27 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Column="0"
-                 ItemsSource="{Binding Books}"
-                 SelectedItem="{Binding Book}"
-                 Style="{StaticResource StyleDefault}" />
+        <ListView Grid.Column="0"
+                  x:Name="ListOfBooks"
+                  ItemsSource="{Binding Books}"
+                  SelectedItem="{Binding Book}"
+                  Style="{StaticResource StyleDefault}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Title}"
+                                    Header="Название" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Author}"
+                                    Header="Автор" />
+                </GridView>
+            </ListView.View>
+        </ListView>
 
         <StackPanel Grid.Column="1" DataContext="{Binding Book}">
             <StackPanel Style="{StaticResource StyleStackPanelLeft}">
                 <Label Content="Название"
                        Style="{StaticResource StyleLabel}" />
                 <TextBox x:Name="InputTitle"
-                         Text="{Binding Title}"
+                         Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource StyleInput}" />
             </StackPanel>
 
@@ -37,7 +47,7 @@
                 <Label Content="Автор"
                        Style="{StaticResource StyleLabel}" />
                 <TextBox x:Name="InputAuthor"
-                         Text="{Binding Author}"
+                         Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource StyleInput}" />
             </StackPanel>
 
@@ -45,7 +55,7 @@
                 <Label Content="Жанр"
                        Style="{StaticResource StyleLabel}" />
                 <TextBox x:Name="InputGenre"
-                         Text="{Binding Genre}"
+                         Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource StyleInput}" />
             </StackPanel>
 

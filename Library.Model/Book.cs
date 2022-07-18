@@ -5,6 +5,27 @@ namespace Library.Model;
 
 public class Book : INotifyPropertyChanged
 {
+    private int _id;
+
+    public int Id
+    {
+        get => _id;
+        set
+        {
+            if (value <= 0)
+            {
+                return;
+            }
+            if (value == _id)
+            {
+                return;
+            }
+
+            _id = value;
+            OnPropertyChanged(nameof(Id));
+        }
+    }
+    
     private string _title;
 
     public string Title
@@ -12,11 +33,6 @@ public class Book : INotifyPropertyChanged
         get => _title;
         set
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return;
-            }
-
             if (value == _title)
             {
                 return;
@@ -34,11 +50,6 @@ public class Book : INotifyPropertyChanged
         get => _author;
         set
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return;
-            }
-
             if (value == _author)
             {
                 return;
@@ -56,11 +67,6 @@ public class Book : INotifyPropertyChanged
         get => _genre;
         set
         {
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                return;
-            }
-
             if (value == _genre)
             {
                 return;

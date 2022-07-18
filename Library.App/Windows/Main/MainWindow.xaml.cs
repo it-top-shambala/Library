@@ -35,7 +35,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     public MainWindow()
     {
         _book = new Book();
-        Books = new ObservableCollection<Book>();
+        Books = new ObservableCollection<Book>(Db.GetBooks());
 
         InitializeComponent();
     }
@@ -49,6 +49,9 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void Clear()
     {
+        //TODO Реализовать очистку полей ввода без имзменения списка
+        ListOfBooks.UnselectAll();
+
         InputTitle.Clear();
         InputAuthor.Clear();
         InputGenre.Clear();
