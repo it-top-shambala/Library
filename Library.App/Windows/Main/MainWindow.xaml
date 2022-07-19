@@ -39,7 +39,7 @@
                 <Label Content="Название"
                        Style="{StaticResource StyleLabel}" />
                 <TextBox x:Name="InputTitle"
-                         Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Title, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource StyleInput}" />
             </StackPanel>
 
@@ -47,7 +47,7 @@
                 <Label Content="Автор"
                        Style="{StaticResource StyleLabel}" />
                 <TextBox x:Name="InputAuthor"
-                         Text="{Binding Author, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Author, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource StyleInput}" />
             </StackPanel>
 
@@ -55,7 +55,7 @@
                 <Label Content="Жанр"
                        Style="{StaticResource StyleLabel}" />
                 <TextBox x:Name="InputGenre"
-                         Text="{Binding Genre, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding Genre, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource StyleInput}" />
             </StackPanel>
 

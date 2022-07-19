@@ -40,19 +40,19 @@ public static class Db
         var db = new SqliteConnection(connectionString);
         db.Open();
 
-        var sql = $"INSERT INTO table_books (title, author, genre) VALUE ('{book.Title}', '{book.Author}', '{book.Genre}')";
+        var sql = $"INSERT INTO table_books (title, author, genre) VALUES ('{book.Title}', '{book.Author}', '{book.Genre}')";
         var command = new SqliteCommand(sql, db);
         command.ExecuteNonQuery();
         
         db.Close();
     }
     
-    public static void UpdateBook(Book book)
+    public static void UpdateBook(Book book, int id)
     {
         var db = new SqliteConnection(connectionString);
         db.Open();
 
-        var sql = $"UPDATE table_books SET title='{book.Title}', author='{book.Author}', genre='{book.Genre}' WHERE id = {book.Id}";
+        var sql = $"UPDATE table_books SET title='{book.Title}', author='{book.Author}', genre='{book.Genre}' WHERE id = {id}";
         var command = new SqliteCommand(sql, db);
         command.ExecuteNonQuery();
         

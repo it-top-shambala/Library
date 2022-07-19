@@ -49,7 +49,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void Clear()
     {
-        //TODO Реализовать очистку полей ввода без имзменения списка
         ListOfBooks.UnselectAll();
 
         InputTitle.Clear();
@@ -65,14 +64,29 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void ButtonDelete_OnClick(object sender, RoutedEventArgs e)
     {
         Books.Remove(Book);
+        Db.DeleteBook(Book.Id);
+        
         Clear();
     }
 
     private void ButtonSave_OnClick(object sender, RoutedEventArgs e)
     {
+        var book = new Book
+        {
+            Title = InputTitle.Text,
+            Author = InputAuthor.Text,
+            Genre = InputGenre.Text
+        };
+        
         if (!Books.Contains(Book))
         {
-            Books.Add(Book);
+            Books.Add(book);
+            Db.AddBook(book);
+        }
+        else
+        {
+            Books[ListOfBooks.SelectedIndex] = book;
+            Db.UpdateBook(book, Book.Id);
         }
 
         Clear();
