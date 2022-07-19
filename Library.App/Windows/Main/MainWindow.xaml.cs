@@ -1,7 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using Library.Model;
 
 namespace Library.App.Windows.Main;
@@ -38,6 +41,15 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         Books = new ObservableCollection<Book>(Db.GetBooks());
 
         InitializeComponent();
+        
+        CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(ListOfBooks.ItemsSource);
+        view.Filter = item =>
+        {
+            if(string.IsNullOrEmpty(Search.Text))
+                return true;
+            else
+                return ((item as Book).Title.IndexOf(Search.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        };
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -90,5 +102,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         }
 
         Clear();
+    }
+
+    private void Search_OnTextChanged(object sender, TextChangedEventArgs e)
+    {
+        CollectionViewSource.GetDefaultView(ListOfBooks.ItemsSource).Refresh();
     }
 }

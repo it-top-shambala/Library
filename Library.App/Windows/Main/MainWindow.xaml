@@ -19,20 +19,24 @@
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.Column="0"
-                  x:Name="ListOfBooks"
-                  ItemsSource="{Binding Books}"
-                  SelectedItem="{Binding Book}"
-                  Style="{StaticResource StyleDefault}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Title}"
-                                    Header="Название" />
-                    <GridViewColumn DisplayMemberBinding="{Binding Author}"
-                                    Header="Автор" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <StackPanel Grid.Column="0">
+            <TextBox x:Name="Search"
+                     TextChanged="Search_OnTextChanged"/>
+            <ListView x:Name="ListOfBooks"
+                      ItemsSource="{Binding Books}"
+                      SelectedItem="{Binding Book}"
+                      Style="{StaticResource StyleDefault}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Title}"
+                                        Header="Название" />
+                        <GridViewColumn DisplayMemberBinding="{Binding Author}"
+                                        Header="Автор" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+
 
         <StackPanel Grid.Column="1" DataContext="{Binding Book}">
             <StackPanel Style="{StaticResource StyleStackPanelLeft}">
